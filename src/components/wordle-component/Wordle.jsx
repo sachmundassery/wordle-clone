@@ -25,7 +25,10 @@ const Wordle = () => {
         setGuessWord(prevState => prevState+event.key)
         setIsFinal(false)
 
-      }else if(event.code.startsWith("Enter") && guessWord.length === 5){
+      }else if(event.code.startsWith("Backspace") && guessWord.length <= 5 && wordOfTheDay !== guessWordsList[guessWordsList.length -1]){
+        setGuessWord(prevState => prevState.slice(0,-1))
+        setIsFinal(false)
+      } else if(event.code.startsWith("Enter") && guessWord.length === 5){
         setGuessWordsList(prevState => [...prevState,guessWord])
         setGuessWord([])
         setIsFinal(true)
